@@ -5,6 +5,7 @@ D3D11Base::D3D11Base(HINSTANCE hInstance, const TCHAR appTitle[], const WNDCLASS
 
 void D3D11Base::initD3D(DXGI_SWAP_CHAIN_DESC* swapChainDesc)
 {
+	// if custom swap chain is not given as parameter, default is used
 	if (!swapChainDesc)
 	{
 		// create a struct to hold information about the swap chain
@@ -51,7 +52,6 @@ void D3D11Base::initD3D(DXGI_SWAP_CHAIN_DESC* swapChainDesc)
 	}
 }
 
-// this is the function that cleans up Direct3D and COM
 void D3D11Base::CleanD3D()
 {
 	// close and release all existing COM objects
