@@ -107,6 +107,11 @@ int ApplicationWindow::Run()
 	return (int)msg.wParam;
 }
 
+HWND ApplicationWindow::GetWindow()
+{
+	return hAppMainWindow_;
+}
+
 void ApplicationWindow::Render()
 {
 }

@@ -50,6 +50,11 @@ public:
        until window close event is triggered.
     */
 	virtual int Run();
+
+   /**
+    * @brief Get application window handler.
+	*/
+	HWND GetWindow();
 protected:
 	
     /** @brief Register window class, internally called in application constructor. 
