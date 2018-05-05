@@ -39,6 +39,10 @@ bool ApplicationWindow::InitWindow(int nCmdShow, int width, int height)
    ShowWindow(hAppMainWindow_, nCmdShow);
    UpdateWindow(hAppMainWindow_);
 
+   // set internal window width and height attributes
+   window_width_ = width;
+   window_height_ = height;
+
    return TRUE;
 }
 

@@ -73,6 +73,8 @@ protected:
 	HINSTANCE hInst_;                               /**< Internal program instance */
 	TCHAR szTitle_[MAX_LOADSTRING];					/**< The title bar text */
 	TCHAR szWindowClass_[MAX_LOADSTRING];			/**< the main window class name */
+	unsigned short window_width_;                   
+	unsigned short window_height_;
 };
 
 #endif // _APPLICATION_WINDOW_H_
