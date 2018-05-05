@@ -21,7 +21,7 @@ int CALLBACK WinMain(
 
 	application->InitWindow(nCmdShow, 1280, 720);
 
-	application->initD3D();
+	application->InitD3D();
 
 	application->Run();
 
