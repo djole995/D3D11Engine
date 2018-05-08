@@ -94,3 +94,13 @@ void D3D11Base::CleanD3D()
 	dev_->Release();
 	devCon_->Release();
 }
+
+ID3D11Device* D3D11Base::GetDevice()
+{
+	return dev_;
+}
+
+ID3D11DeviceContext* D3D11Base::GetDeviceContext()
+{
+	return devCon_;
+}

@@ -53,6 +53,20 @@ public:
 	*/
 	void CleanD3D();
 
+   /**
+    * @brief Get D3D11 device
+	*
+	* @return D3D11 device interface pointer.
+	*/
+	ID3D11Device* GetDevice();
+
+	/**
+	* @brief Get D3D11 device context
+	*
+	* @return D3D11 device context interface pointer.
+	*/
+	ID3D11DeviceContext* GetDeviceContext();
+
 protected:
 	/**
 	* @brief Method which does graphic rendering.
