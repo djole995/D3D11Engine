@@ -32,14 +32,25 @@ int CALLBACK WinMain(
 
 	application->InitD3D();
 
-	std::unique_ptr<D3D11Pipeline> D3DPipeline =
-		std::make_unique<D3D11Pipeline>(D3D11Pipeline("../shaders/shaders.shader.txt", "../shaders/shaders.shader.txt"
-			, ied, application->GetDevice()));
+	std::unique_ptr<D3D11Pipeline> D3DPipeline = std::make_unique<D3D11Pipeline>(D3D11Pipeline());
+	
+	try
+	{
+		D3DPipeline->LoadPipeline("../shaders/shaders.shader.txt", "../shaders/shaders.shader.txt"
+			, ied, application->GetDevice());
+	}
+	catch (std::exception e)
+	{
+		MessageBox(NULL, e.what(), NULL, MB_OK);
+		application->CleanD3D();
+		return 0;
+	}
 
 	D3DPipeline->Activate(application->GetDeviceContext());
 
 	application->Run();
 
+	D3DPipeline->Clean();
 	application->CleanD3D();
 
 	return 0;

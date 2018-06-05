@@ -10,18 +10,30 @@ class D3D11Pipeline
 {
 
 public:
+
+   /**
+    * @brief D3D11 pipeline constructor
+	*
+	*/
+	D3D11Pipeline() = default;
+
+	/**
+	* @brief D3D11 pipeline destructor
+	*
+	*/
+	~D3D11Pipeline() = default;
+
   /**
-	* @brief D3D11 custom pipeline constructor (vertex shader, pixel shader and input layout).
+	* @brief Load D3D11 custom pipeline (vertex shader, pixel shader and input layout).
 	* 
 	* @param vertexShaderSrc vertex shader source code path.
 	* @param pixelShaderSrc pixel shader source code path.
 	* @param inputLayoutDesc vertices attributes array.
 	* @param dev Device interface used for pipeline components creation.
 	*
+	* @throws execption with description of its cause.
 	*/
-	D3D11Pipeline(const char* vertexShaderSrc, const char* pixelShaderSrc, std::vector<D3D11_INPUT_ELEMENT_DESC>& inputLayoutDesc, ID3D11Device* dev);
-
-	~D3D11Pipeline() = default;
+	void LoadPipeline(const char* vertexShaderSrc, const char* pixelShaderSrc, std::vector<D3D11_INPUT_ELEMENT_DESC>& inputLayoutDesc, ID3D11Device* dev) throw(std::exception);
 
    /**
 	* @brief Set pipeline as active rendering pipeline over the used device context.
@@ -31,30 +43,40 @@ public:
 	void Activate(ID3D11DeviceContext* devCon);
 
    /**
-    * @brief Load and set (change current) vertex shader.
-	*
-	* @param vertexShaderSrc vertex shader source code path.
-	*/
-	void SetVertexShader(const char* vertexShaderSrc);
+   * @brief Clean pipeline (release all COM objects).
+   *
+   */
+	void Clean();
 
 	/**
-	* @brief Load and set (change current) pixel shader.
+	* @brief Get vertex shader COM object interface.
 	*
-	* @param pixelShaderSrc pixel shader source code path.
 	*/
-	void SetPixelShader(const char* pixelShaderSrc);
+	ID3D11VertexShader* GetVertexShader();
 
 	/**
-	* @brief Set new input layout.
+	* @brief Get vertex shader blob source.
 	*
-	* @param inputLayoutDesc vertices format descriptor.
 	*/
-	void SetInputLayout(D3D11_INPUT_ELEMENT_DESC* inputLayoutDesc);
+	ID3D10Blob* GetVertexShaderSrc();
+
+	/**
+	* @brief Get pixel shader COM object interface.
+	*
+	*/
+	ID3D11PixelShader* GetPixelShader();
+
+	/**
+	* @brief Get input layout COM object interface.
+	*
+	*/
+	ID3D11InputLayout* GetInputLayout();
 
 private:
-	ID3D11VertexShader* vertexShader_; 
-	ID3D11PixelShader* pixelShader_;
-	ID3D11InputLayout* inputLayout_;
+	ID3D11VertexShader* vertexShader_;  /**< vertex shader COM object interface */
+	ID3D11PixelShader* pixelShader_;  /**< pixel shader COM object interface */
+	ID3D11InputLayout* inputLayout_;   /**< input layout COM object interface */
+	ID3D10Blob* vertexShaderSrc_;  /**< vertex shader source blob */
 };
 
 #endif
